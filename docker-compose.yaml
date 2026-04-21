@@ -106,6 +106,9 @@ services:
     ports:
       - "${PORT:-3002}:${INTERNAL_PORT:-3002}"
     command: node dist/src/harness.js --start-docker
+    networks:
+      - backend
+      - coolify
     # Resource limits for Docker Compose (not Swarm)
     # Increase if you have more CPU cores/RAM available
     cpus: 4.0
@@ -168,3 +171,5 @@ services:
 networks:
   backend:
     driver: bridge
+  coolify:
+    external: true
